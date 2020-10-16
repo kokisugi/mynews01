@@ -25,20 +25,7 @@ class ProfileController extends Controller
       $form = $request->all();
 
       // formに画像があれば、保存する
-      if ($form['image']) {
-        $path = $request->file('image')->store('public/image');
-        $profile->image_path = basename($path);
-      } else {
-        $profile->image_path = null;
-      }
-
-      unset($form['_token']);
-      unset($form['image']);
-      // データベースに保存する
-      $profile->fill($form);
-      $profile->save();
-
-      return redirect('admin/profile/create');
+     
   }
 
   public function index(Request $request)
@@ -58,7 +45,7 @@ class ProfileController extends Controller
       
     $profile = Profile::find($request->id);
 
-      return view('admin.news.edit', ['news_form' => $profile]);
+      return view('admin.profile.edit', ['profile_form' => $profile]);
   }
 
 
