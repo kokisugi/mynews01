@@ -23,9 +23,13 @@ class ProfileController extends Controller
 
       $profile = new Profile;
       $form = $request->all();
+      unset($form['_token']);
+      $profile ->fill($form);
+      $profile->save();
+
+      return redirect('admin/profile');
 
       // formに画像があれば、保存する
-     
   }
 
   public function index(Request $request)
