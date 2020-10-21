@@ -40,11 +40,24 @@
                             
                         </div>
                     </div>
-                    
+                    <input type="hidden" name="id" value="{{ $profile_form->id }}">
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>
+                <div class="row mt-5">
+                    <div class="col-md-4 mx-auto">
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                            @if ($profile_form->histories02 != NULL)
+                                @foreach ($profile_form->histories02 as $history02)
+                                    <li class="list-group-item">{{ $history02->edited_at }}</li>
+                                @endforeach
+                            @endif
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 @endsection
+            
